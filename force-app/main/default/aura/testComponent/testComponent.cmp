@@ -1,0 +1,11 @@
+<aura:component description="testComponent" implements="force:hasRecordId" controller="auraController">
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+	<aura:attribute name="returnedObject" type="theInterface" description="the returned interface implementation"/>
+	<aura:attribute name="result" type="String"/>
+
+
+	<lightning:button variant="brand" label="Do it" onclick="{!c.callController}"/>
+
+	{!v.result}
+</aura:component>

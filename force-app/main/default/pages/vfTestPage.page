@@ -1,0 +1,51 @@
+<apex:page id="vfTestPage" showHeader="false" sideBar="false" standardStylesheets="false" cache="false">
+    <apex:includeLightning />
+    <apex:slds />
+        <script>
+            $Lightning.use("c:lightningOut", function () {
+                $Lightning.createComponent(
+                        "c:testComponent",
+                        {
+                        },
+                        "output",
+                        function (cmp) {
+                            var loadingDivElt = document.getElementById("loader");
+                            loadingDivElt.style.display = 'none';
+                            $A.eventService.addHandler({
+                                event: 'force:navigateToURL',
+                                handler: function (event) {
+                                    if (typeof sforce != 'undefined' && sforce.one) {
+                                        // VF page in S1 or Lightning Exp
+                                        // VF page in Classic
+                                        sforce.one.navigateToURL(event.getParams().url);
+
+                                    } else {
+                                        //From the Payment Entry Modal if opened from this VF then the URL will simply end with this records id
+                                        //So navigate to it
+                                        window.parent.location.href = event.getParams().url;
+
+                                    }
+
+                                }
+                            });
+                        });
+            });
+
+        </script>
+
+
+        <div class="slds-scoped">
+            <div id="loader" class="slds-grid slds-grid--frame">
+                <div class="slds-spinner_container">
+                    <div class="slds-spinner slds-spinner--brand slds-spinner--large" role="alert">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="output">
+        </div>
+
+</apex:page>
