@@ -7,7 +7,7 @@
             if (component.isValid() && returnValue.getState() === 'SUCCESS') {
                 var returnedData = returnValue.getReturnValue();
 
-                //This will show that the name property has been set after assignemnt to the attribute
+                //This will show that the name property has been set
                 console.log(JSON.stringify(returnedData));
 
                 component.set("v.returnedObject", returnedData);
