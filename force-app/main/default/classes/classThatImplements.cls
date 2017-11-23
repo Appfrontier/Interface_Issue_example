@@ -1,5 +1,5 @@
 public with sharing class classThatImplements implements theInterface{
-    @AuraEnabled public string getName(){
+    @AuraEnabled public static string getName(){
         return 'classThatImplements';
     }
 
